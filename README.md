@@ -5,11 +5,9 @@
 ## Описание
 
 Вычисление суммы ряда:
-$
-\[
+$\[
 S = \sum_{n=1}^{\infty} \frac{\cos nx}{n} = \cos x + \frac{\cos 2x}{2} + \ldots
-\]
-$
+\]$
 с точностью \(\varepsilon = 10^{-7}\) и сравнение с контрольным значением функции:
 \[
 y = -\ln\left(2\sin\frac{x}{2}\right)
@@ -20,3 +18,4 @@ y = -\ln\left(2\sin\frac{x}{2}\right)
 - Зависимости: стандартная библиотека Python (multiprocessing, math, typing)
 
 ## Структура проекта
+
