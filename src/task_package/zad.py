@@ -1,15 +1,14 @@
 import math
 from multiprocessing import Pool, cpu_count
-from typing import List, Tuple
 
 
-def compute_term(args: Tuple[int, float]) -> float:
+def compute_term(args: tuple[int, float]) -> float:
     """Вычисляет отдельный член ряда."""
     n, x = args
     return math.cos(n * x) / n
 
 
-def compute_partial_sum(start_end: Tuple[int, int, float]) -> float:
+def compute_partial_sum(start_end: tuple[int, int, float]) -> float:
     """Вычисляет частичную сумму ряда для заданного диапазона."""
     start, end, x = start_end
     partial_sum = 0.0
@@ -46,7 +45,7 @@ def compute_series_sum(x: float = math.pi, epsilon: float = 1e-7) -> float:
     num_processes = min(cpu_count(), 4)  # Используем до 4 процессов
     chunk_size = max_n // num_processes
 
-    ranges: List[Tuple[int, int, float]] = []
+    ranges: list[tuple[int, int, float]] = []
     for i in range(num_processes):
         start = i * chunk_size + 1
         end = (i + 1) * chunk_size if i < num_processes - 1 else max_n
@@ -54,7 +53,7 @@ def compute_series_sum(x: float = math.pi, epsilon: float = 1e-7) -> float:
 
     # Параллельное вычисление частичных сумм
     with Pool(processes=num_processes) as pool:
-        partial_sums: List[float] = pool.map(compute_partial_sum, ranges)
+        partial_sums: list[float] = pool.map(compute_partial_sum, ranges)
 
     # Суммируем все частичные суммы
     total_sum = sum(partial_sums)
